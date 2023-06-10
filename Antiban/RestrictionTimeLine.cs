@@ -65,8 +65,10 @@ public class RestrictionTimeLine : IEnumerable<RestrictionTime>
         foreach (var freeInterval in GetFreeIntervals()
                      .Where(i => i.Start >= interval.Start))
         {
-            if (freeInterval.IsInclude(interval.ShiftTo(freeInterval.Start)))
-                return new RestrictionTime(freeInterval.Start, interval.Busy);
+            var shiftedInterval = interval.ShiftTo(interval.Start.Max(freeInterval.Start));
+
+            if (freeInterval.IsInclude(shiftedInterval))
+                return shiftedInterval;
         }
 
         throw new Exception("Не удалось найти свободное место");

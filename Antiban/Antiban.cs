@@ -15,6 +15,7 @@ namespace Antiban
         public static TimeSpan MinPeriodBetweenMessagesOnOnePhone = TimeSpan.FromSeconds(60);
         public static TimeSpan MinPeriodBetweenMessagesOnOnePhoneWithPriority1 = TimeSpan.FromHours(24);
     }
+
     public class Antiban
     {
         private readonly List<AntibanResult> _results = new();
